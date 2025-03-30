@@ -1,7 +1,17 @@
-import {useRef} from "react";
+import { useRef, } from "react";
+//import { put } from "@vercel/blob";
 
 const PorscheVideo = (props) => {
     const videoRef = useRef(null);
+   // const [getUrl, setUrl] = useState("");
+
+// useEffect(() => {
+//     (async ()=>{
+//         const { url } = await put('final_porsche_video.mp4', 'Hello World!', { access: 'public' });
+//         setUrl(url);
+//     })()
+//
+// },[])
     return (
         <>
             <video
@@ -11,7 +21,7 @@ const PorscheVideo = (props) => {
                 muted={props.isMuted} // Mute control
                 onEnded={props.setText} // Trigger text fade-in on end
             >
-                <source src={"src/static/assests/final porsche video.mp4"} type="video/mp4"/>
+                <source src={'https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/final_porsche_video-Km46VP2iJqzSZdYXbP3Hqx94T1ZWQ2.mp4'} type="video/mp4"/>
             </video>
         </>
     )
