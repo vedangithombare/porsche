@@ -1,0 +1,34 @@
+import {useState, useRef} from "react";
+
+const PorscheVideo = () => {
+   const [showText,setShowText] = useState(false);
+   const videoRef = useRef(null);
+   return (
+       <>
+           <div className=" flex flex-col items-center justify-center bg-red-950  h-[500px] relative top-[114px]  ">
+               <video
+                   ref={videoRef}
+                   className=" max-w-5xl h-[489px];"
+                   autoPlay={true}
+                   onEnded={() => setShowText(true)}
+               >
+                   <source src="src/static/assests/final speed video.mp4" type="video/mp4"/>
+               </video>
+               <p
+                   className={`mt-4 text-white text-2xl  text-center transition-opacity duration-1000 ${
+                       showText ? "opacity-100" : "opacity-0"
+                   }`}
+               >
+                   This is the faded-in text after the video.
+               </p>
+
+
+           </div>
+
+       </>
+   )
+
+
+};
+
+export default PorscheVideo;
