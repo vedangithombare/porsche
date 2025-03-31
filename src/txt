@@ -32,3 +32,108 @@ const PorscheVideo = () => {
 };
 
 export default PorscheVideo;
+==================================
+
+<div
+    className="w-full h-full overflow-y-auto md:h-full md:w-3/5 lg:w-1/4
+               flex flex-col justify-between bg-gradient-to-b from-black to-neutral-900
+               p-2 sm:p-3 md:p-6"
+>
+    {/* Main Info Card */}
+    <div
+        className={`bg-neutral-800/50 backdrop-blur-sm rounded-xl shadow-lg
+                    p-2 sm:p-3 md:p-6 border border-neutral-700 transition-all duration-500
+                    ${isTransitioning ? 'opacity-0 transform translate-y-4' : 'opacity-100 transform translate-y-0'}`}
+    >
+        <div className="text-[10px] uppercase tracking-wider text-red-500 font-semibold mb-1">
+            Porsche Heritage
+        </div>
+        <div className="text-xs sm:text-sm text-neutral-400 mb-2 sm:mb-3">
+            {porschePowers[index].Year}
+        </div>
+
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-4 text-white">
+            {porschePowers[index].Model}
+        </h2>
+
+        {/* Horsepower & Speed Cards */}
+        <div className="grid grid-cols-2 gap-1 sm:gap-3 mt-1 sm:mt-3">
+            <div
+                className="bg-neutral-900/80 rounded-lg p-2 sm:p-3 border border-neutral-700
+                           transition-all hover:bg-neutral-800 hover:border-red-600/30"
+            >
+                <div className="text-[10px] sm:text-xs text-neutral-400 uppercase tracking-wide mb-0.5">
+                    Horsepower
+                </div>
+                <div className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                    {porschePowers[index].Horsepower}
+                </div>
+            </div>
+
+            <div
+                className="bg-neutral-900/80 rounded-lg p-2 sm:p-3 border border-neutral-700
+                           transition-all hover:bg-neutral-800 hover:border-red-600/30"
+            >
+                <div className="text-[10px] sm:text-xs text-neutral-400 uppercase tracking-wide mb-0.5">
+                    0-100 MPH
+                </div>
+                <div className="text-base sm:text-lg md:text-xl font-semibold text-white">
+                    {porschePowers[index].Time}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {/* Timeline Card */}
+    <div
+        className="bg-neutral-800/50 backdrop-blur-sm rounded-xl shadow-lg
+                   p-2 sm:p-3 md:p-6 border border-neutral-700 mt-2 sm:mt-4"
+    >
+        <div
+            className="text-xs uppercase tracking-wider text-neutral-400 font-semibold mb-2
+                       sm:mb-3 flex justify-between items-center"
+        >
+            <span>Porsche Evolution</span>
+            <span className="text-red-500">{porschePowers[index].Year}</span>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-center items-center space-x-2 sm:space-x-4 mt-2 sm:mt-4">
+            <button
+                onClick={handleUpBtn}
+                disabled={index === 0}
+                className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8
+                            rounded-full transition-all ${
+                                index === 0
+                                    ? 'bg-neutral-800 text-neutral-600 cursor-not-allowed'
+                                    : 'bg-neutral-800 text-white hover:bg-red-600 hover:scale-110'
+                            }`}
+                aria-label="Previous model"
+            >
+                <FontAwesomeIcon icon={faAnglesUp}/>
+            </button>
+            <button
+                onClick={togglePlay}
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10
+                           bg-red-600 rounded-full text-white hover:bg-red-700
+                           transition-all hover:scale-110 shadow-lg shadow-red-600/20"
+                aria-label={isPlaying ? "Pause video" : "Play video"}
+            >
+                <FontAwesomeIcon icon={isPlaying ? faPause : faPlay}/>
+            </button>
+            <button
+                onClick={handleDownBtn}
+                disabled={index === porschePowers.length - 1}
+                className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8
+                            rounded-full transition-all ${
+                                index === porschePowers.length - 1
+                                    ? 'bg-neutral-800 text-neutral-600 cursor-not-allowed'
+                                    : 'bg-neutral-800 text-white hover:bg-red-600 hover:scale-110'
+                            }`}
+                aria-label="Next model"
+            >
+                <FontAwesomeIcon icon={faAnglesDown}/>
+            </button>
+        </div>
+    </div>
+</div>

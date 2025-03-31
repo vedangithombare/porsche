@@ -285,7 +285,7 @@ function History() {
     };
 
     return (
-        <div className="bg-black min-h-screen">
+        <div className="bg-black min-h-screen overflow-y-auto ">
             <div className="flex flex-col md:flex-row items-center h-screen max-w-screen-2xl mx-auto text-white">
                 {/* Video Section */}
                 <div
@@ -398,7 +398,8 @@ function History() {
 
                 {/* Card-Based Info Panel */}
                 <div
-                    className="w-full h-1/2 md:h-full md:w-2/5 lg:w-1/4 flex flex-col justify-between bg-gradient-to-b from-black to-neutral-900 p-3 sm:p-4 md:p-6">
+                    className="w-full h-full md:h-full md:w-3/5 lg:w-1/4  flex flex-col justify-between
+                     bg-gradient-to-b from-black to-neutral-900 p-2 sm:p-3 md:p-6">
                     {/* Main Info Card */}
                     <div
                         className={`bg-neutral-800/50 backdrop-blur-sm rounded-xl shadow-lg p-3 sm:p-4 md:p-6 border border-neutral-700 transition-all duration-500 ${
@@ -590,7 +591,7 @@ function History() {
                                     />
                                 </div>
                                 <div className="flex justify-between items-center mb-1">
-                                    <span className="text-xs text-neutral-400">0-60 Time</span>
+                                    <span className="text-xs text-neutral-400">0-100 Time</span>
                                     <span className="text-xs text-red-500 font-bold">{porschePowers[index].Time}</span>
                                 </div>
                                 <div className="w-full bg-neutral-800 rounded-full h-1.5">

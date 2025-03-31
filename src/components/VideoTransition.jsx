@@ -57,9 +57,10 @@ function VideoTransition(props) {
 
     const { brand, tagline, button, spacing } = getFontSizes();
 
+
     return (
         <>
-            <div onTransitionEnd={() => !props.fadeOut && setTimeout(() => props.setFadeOut(!props.fadeOut), 600)}
+            <div  onTransitionEnd={() => !props.fadeOut &&  setTimeout(() => props.setFadeOut(!props.fadeOut), 600)}
                  className={`flex flex-col items-center justify-center w-full h-screen overflow-hidden fixed top-0 transition-opacity duration-3000 px-4 ${
                      props.showText ? "opacity-100" : "opacity-0"}`}>
                 <span className={`text-white align ${brand} font-[porsche] tracking-wider`}>PORSCHE</span>
