@@ -2,7 +2,7 @@
 A sleek and modern UI showcasing Porsche classics.
 ## Tech Stack
 - **Frontend**: React.js, Tailwind CSS
-- **State Management**: useState, useEffect
+-  **AI Assitance**: Claude AI 
 - **Deployment**: Vercel
   
 ## 🔗 Live Link
