@@ -190,10 +190,6 @@ function History() {
         setShowAcknowledgements(!showAcknowledgements);
     };
 
-    const closeAcknowledgements = (e) => {
-        if (e) e.stopPropagation();
-        setShowAcknowledgements(false);
-    };
     const handleVideoMouseEnter = () => {
         setShowControls(true);
     };
