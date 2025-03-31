@@ -1,5 +1,5 @@
 import PorscheVideo from "./PorscheVideo.jsx";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import VideoTransition from "./VideoTransition.jsx";
 import History from "./History.jsx";
 

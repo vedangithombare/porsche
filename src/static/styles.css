@@ -91,17 +91,75 @@
 }
 
 .roboto-font {
-             font-family: "Roboto", sans-serif;
-             font-optical-sizing: auto;
-             font-weight:100;
-             font-style: normal;
-             font-variation-settings:
-                     "wdth" 100;
-         }
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
 
 body, #root {
     width: 100vw;
     min-height: 100vh;
     overflow: hidden;
     background-color: black;
+}
+
+
+@keyframes pulse-fade {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/*// Add this CSS to your stylesheet*/
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.animate-shine::before {
+    animation: shine 3s infinite;
 }

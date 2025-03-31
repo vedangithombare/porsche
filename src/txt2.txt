@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef} from "react";
-import {faAnglesDown, faAnglesUp, faPlay, faPause, faVolumeUp, faVolumeMute, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {faAnglesDown, faAnglesUp, faPlay, faPause, faVolumeUp, faVolumeMute} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function History() {
@@ -12,131 +12,28 @@ function History() {
     const [tooltipIndex, setTooltipIndex] = useState(null);
     const [tooltipPosition, setTooltipPosition] = useState({x: 0, y: 0});
     const [isMobile, setIsMobile] = useState(false);
-    const [showAcknowledgements, setShowAcknowledgements] = useState(false);
     const videoRef = useRef(null);
     const prevIndexRef = useRef(index);
     const timelineRef = useRef(null);
-    const [isHovered, setIsHovered] = useState(false);
 
+  const PorscheVideos = [
+         "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/1.final%20porsche%20718%20gt4%20rs%20cayman-BZ3qQUCjR7BsMF3PFmFYoZDY2YKijL.mp4",
+         "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/2.1953%E2%80%94%20porsche%20550-WSznggwRTsTt1wh9M1XMebmGutpGLT.mp4",
 
-    const PorscheVideos = [
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/1.final%20porsche%20718%20gt4%20rs%20cayman-BZ3qQUCjR7BsMF3PFmFYoZDY2YKijL.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/2.1953%E2%80%94%20porsche%20550-WSznggwRTsTt1wh9M1XMebmGutpGLT.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/3%20final%201957%E2%80%94%20porsche%20718-vy2EbiTZO1zL7YtpfaUCwGHriEVONU.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/4.%20final1963%E2%80%94%20porsche%20904-FA8HlAm6XNfDvRuhG5tYka49AXj8TH.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/5.%20final1969%E2%80%94%20porsche%20917-SPMJ5tMXanDPSpDymXQAeAK3fV3OpC.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/6.%20final1975%E2%80%94%20porsche%20911%20turbo-IBBCvTphniRTuWeBXg2VaFivHw7WZi.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/7.%20final1986%E2%80%94%20porsche%20959-1EmMt28yM9IAHjzFomAJ7iLVIW9iJM.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/8.final1996%E2%80%94%20porsche%20986%20boxster-SmGd1YZrgcOLmKKxPqo834huREnH1r.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/9.final1999%E2%80%94%20porsche%20911%20gt3-IXZfIUxINE5kJ5gSEPYAfLrour1RtU.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/10.final2003%E2%80%94%20porsche%20carrera%20gt-qE5W8XM5HXTZ4j4LUdVKBnqkdOE46y.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/11.%20final%202005%E2%80%94%20porsche%20cayman-jqMmaEmnDf27SkRgX4CT8GSHQ8P96F.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/12.%20final2009%E2%80%94%20porsche%20panamera-4L1NAlQUnFqb7VYECjFfXOt0PcNt86.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/13.%20final2013%E2%80%94%20porsche%20918%20spyder-STFSPXgWWaxGigb4r2nw3Zp4kONczk.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/14.final2019%E2%80%94%20porsche%20taycan-TGRCD8KjaEFIvE5jEUwApwoGMHmCCV.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/15.final%20final%202022%E2%80%94%20porsche%20718%20gt4%20rs%20cayman%20-%20Made%20with%20Clipchamp-dZZh6tZdgUZW2pL0l1ZRrrC62Kfumh.mp4"];
-
-
-    const porschePowers = [
-        {
-            "Year": "1948",
-            "Model": "Porsche 356",
-            "Horsepower": "40 hp",
-            "Time": "13 sec"
-        },
-        {
-            "Year": "1953",
-            "Model": "Porsche 550",
-            "Horsepower": "110 hp",
-            "Time": "7 sec"
-        },
-        {
-            "Year": "1957",
-            "Model": "Porsche 718",
-            "Horsepower": "142 hp",
-            "Time": "4.9 sec"
-        },
-        {
-            "Year": "1963",
-            "Model": "Porsche 904",
-            "Horsepower": "180 hp",
-            "Time": "6.4 sec"
-        },
-        {
-            "Year": "1969",
-            "Model": "Porsche 917",
-            "Horsepower": "580 hp",
-            "Time": "1.9 sec"
-        },
-        {
-            "Year": "1975",
-            "Model": "Porsche 911 Turbo",
-            "Horsepower": "260 hp",
-            "Time": "5.5 sec"
-        },
-        {
-            "Year": "1986",
-            "Model": "Porsche 959",
-            "Horsepower": "450 hp",
-            "Time": "3.7 sec"
-        },
-        {
-            "Year": "1996",
-            "Model": "Porsche 986 Boxster",
-            "Horsepower": "201 hp",
-            "Time": "6.9 sec"
-        },
-        {
-            "Year": "1999",
-            "Model": "Porsche 911 GT3",
-            "Horsepower": "360 hp",
-            "Time": "4.8 sec"
-        },
-        {
-            "Year": "2003",
-            "Model": "Porsche Carrera GT",
-            "Horsepower": "612 hp",
-            "Time": "3.9 sec"
-        },
-        {
-            "Year": "2005",
-            "Model": "Porsche Cayman",
-            "Horsepower": "245 hp",
-            "Time": "5.8 sec"
-        },
-        {
-            "Year": "2009",
-            "Model": "Porsche Panamera",
-            "Horsepower": "400 hp",
-            "Time": "5.2 sec"
-        },
-        {
-            "Year": "2013",
-            "Model": "Porsche 918 Spyder",
-            "Horsepower": "887 hp",
-            "Time": "2.6 sec"
-        },
-        {
-            "Year": "2019",
-            "Model": "Porsche Taycan",
-            "Horsepower": "616 hp",
-            "Time": "3.0 sec"
-        },
-        {
-            "Year": "2022",
-            "Model": "Porsche 718 GT4RS Cayman",
-            "Horsepower": "500 hp",
-            "Time": "3.2 sec"
-        }
-    ];
-
-
-    // Video source credits
-    const videoCredits = [
-        {
-            "video": "Credits",
-            "source": "https://www.instagram.com/reel/DFqrv_isuFL/?igsh=aXdmeG5qYmE4bXp0",
-        }
+     const porschePowers = [
+         {
+             "Year": "1948",
+             "Model": "Porsche 356",
+             "Horsepower": "40 hp",
+             "Time": "13 sec"
+         },
+         {
+             "Year": "1953",
+             "Model": "Porsche 550",
+             "Horsepower": "110 hp",
+             "Time": "7 sec"
+         }
+     ];
     ];
 
     // Check if device is mobile
@@ -185,15 +82,6 @@ function History() {
         }
     };
 
-    const toggleAcknowledgements = (e) => {
-        if (e) e.stopPropagation();
-        setShowAcknowledgements(!showAcknowledgements);
-    };
-
-    const closeAcknowledgements = (e) => {
-        if (e) e.stopPropagation();
-        setShowAcknowledgements(false);
-    };
     const handleVideoMouseEnter = () => {
         setShowControls(true);
     };
@@ -218,20 +106,6 @@ function History() {
         setShowTimelineTooltip(false);
     };
 
-    // Close acknowledgements when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (e) => {
-            if (showAcknowledgements && !e.target.closest('.acknowledgements-popup')) {
-                setShowAcknowledgements(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showAcknowledgements]);
-
     // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -243,16 +117,12 @@ function History() {
                 togglePlay();
             } else if (e.key === "m") {
                 toggleMute();
-            } else if (e.key === "i") {
-                toggleAcknowledgements();
-            } else if (e.key === "Escape" && showAcknowledgements) {
-                setShowAcknowledgements(false);
             }
         };
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [index, isPlaying, isMuted, showAcknowledgements]);
+    }, [index, isPlaying, isMuted]);
 
     // Reset video when index changes and handle transition
     useEffect(() => {
@@ -335,55 +205,6 @@ function History() {
                         />
                     </button>
 
-                    {/* Video Acknowledgements Button */}
-                    <button
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                        className={`absolute bottom-4 right-4 bg-black/30 hover:bg-black/50 rounded-full p-2 sm:p-3 transition-all duration-300 flex items-center ${showControls ? 'opacity-100' : 'opacity-0'}`}
-                        aria-label="Video credits"
-                    >
-                        <FontAwesomeIcon
-                            icon={faInfoCircle}
-                            className="text-lg sm:text-xl text-white"
-                        />
-                        <span className="ml-2 text-xs sm:text-sm hidden sm:inline">Credits</span>
-                    </button>
-
-                    {/* Video Acknowledgements Popup */}
-                    {isHovered && (
-                        <div className="acknowledgements-popup fixed z-30 bottom-16 right-4 sm:right-6 md:right-8 bg-black/80 backdrop-blur-sm rounded-lg border border-neutral-700 shadow-xl text-white p-3 sm:p-4 max-w-xs sm:max-w-sm">
-                            <div className="flex justify-between items-center mb-2 sm:mb-3">
-                                <h3 className="text-sm sm:text-base font-semibold">Video Acknowledgements</h3>
-                                <button
-                                    onClick={toggleAcknowledgements}
-                                    className="text-neutral-400 hover:text-white"
-                                >
-                                    &times;
-                                </button>
-                            </div>
-                            <div className="text-xs sm:text-sm">
-                                <div className="space-y-3">
-                                    {videoCredits.map((credit, i) => (
-                                        <div key={i}
-                                             className={`pb-2 ${i < videoCredits.length - 1 ? 'border-b border-neutral-700' : ''}`}>
-                                            <div className="font-semibold text-red-500"></div>
-                                            <div className="text-neutral-300 mt-1">
-                                                <a
-                                                    href={credit.source}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-blue-400 hover:underline"
-                                                >
-                                                    {credit.source}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
                     {/* Video transition overlay */}
                     {isTransitioning && (
                         <div className={`absolute inset-0 bg-black/30 transition-opacity duration-500 ${
@@ -431,11 +252,11 @@ function History() {
                                 </div>
                             </div>
 
-                            {/* 0-100 Time Card */}
+                            {/* 0-60 Time Card */}
                             <div
                                 className="bg-neutral-900/80 rounded-lg p-2 sm:p-4 border border-neutral-700 transition-all hover:bg-neutral-800 hover:border-red-600/30">
                                 <div className="text-xs text-neutral-400 uppercase tracking-wide mb-0.5 sm:mb-1">
-                                    0-100 MPH
+                                    0-60 MPH
                                 </div>
                                 <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
                                     {porschePowers[index].Time}
@@ -645,7 +466,7 @@ function History() {
             </div>
 
             {/* Add global styles for animations */}
-            <style jsx={"true"} global = {"true"}>{`
+            <style jsx global>{`
                 /* Add the missing xs breakpoint */
                 @media (min-width: 475px) {
                     .xs\\:flex {
