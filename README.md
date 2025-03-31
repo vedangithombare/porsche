@@ -1,12 +1,16 @@
-# React + Vite
+# Porsche Heritage
+A sleek and modern UI showcasing Porsche classics.<br>
+I participated in the Frontend UI Hackathon 2025, where the challenge was to build a UI based on a given prompt, and I chose to build a landing page for Porsche. I mainly focused on a modern and visually pleasing interface.<br>
+*([Click here to view the challenge](https://www.linkedin.com/feed/update/urn:li:activity:7311031679714803715?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7311031679714803715%2C7311031986419023873%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287311031986419023873%2Curn%3Ali%3Aactivity%3A7311031679714803715%29))*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend**: React.js, Tailwind CSS
+-  **AI Assitance**: Claude AI 
+- **Deployment**: Vercel
+  
+## 🔗 Live Link
+*([Click here to view](https://porsche-lilac.vercel.app/))*
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
