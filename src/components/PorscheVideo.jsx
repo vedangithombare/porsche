@@ -1,27 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
-const PorscheVideo = (props) => {
+const PorscheVideo = ({ allVideoUrls = [], isMuted = true, setText = () => {} }) => {
     const videoRef = useRef(null);
 
-    // Handle resize and orientation changes
-    useEffect(() => {
-        const handleResize = () => {
-            // Responsive adjustments if needed
-        };
-
-        // Add event listeners
-        window.addEventListener('resize', handleResize);
-
-        // Clean up
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    // Handle video metadata loading
-    const handleLoadedMetadata = () => {
-        // Video is now ready
-    };
+    // Safely access the first element if it exists
+    const url = allVideoUrls.length > 0 ? allVideoUrls[0] : '';
 
     return (
         <div className="w-full relative overflow-hidden"
@@ -30,18 +13,23 @@ const PorscheVideo = (props) => {
                  height: "auto",
                  maxHeight: "100vh"
              }}>
-            <video
-                ref={videoRef}
-                className=" h-full object-cover"
-                autoPlay
-                playsInline // Helps with mobile playback
-                muted={props.isMuted}
-                onEnded={props.setText}
-                onLoadedMetadata={handleLoadedMetadata}
-            >
-                <source src={'https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/final_porsche_video-Km46VP2iJqzSZdYXbP3Hqx94T1ZWQ2.mp4'} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+            {url ? (
+                <video
+                    ref={videoRef}
+                    className="h-full object-cover"
+                    autoPlay
+                    playsInline
+                    muted={isMuted}
+                    onEnded={setText}
+                >
+                    <source src={url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            ) : (
+                <div className="flex items-center justify-center h-64 bg-gray-100">
+                    No video URL provided
+                </div>
+            )}
         </div>
     );
 };

@@ -1,8 +1,16 @@
 import {useState, useEffect, useRef} from "react";
-import {faAnglesDown, faAnglesUp, faPlay, faPause, faVolumeUp, faVolumeMute, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import {
+    faAnglesDown,
+    faAnglesUp,
+    faPlay,
+    faPause,
+    faVolumeUp,
+    faVolumeMute,
+    faInfoCircle
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function History() {
+function History(props) {
     const [index, setIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(true);
     const [showControls, setShowControls] = useState(false);
@@ -18,24 +26,10 @@ function History() {
     const timelineRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
 
-
-    const PorscheVideos = [
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/1.final%20porsche%20718%20gt4%20rs%20cayman-BZ3qQUCjR7BsMF3PFmFYoZDY2YKijL.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/2.1953%E2%80%94%20porsche%20550-WSznggwRTsTt1wh9M1XMebmGutpGLT.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/3%20final%201957%E2%80%94%20porsche%20718-vy2EbiTZO1zL7YtpfaUCwGHriEVONU.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/4.%20final1963%E2%80%94%20porsche%20904-FA8HlAm6XNfDvRuhG5tYka49AXj8TH.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/5.%20final1969%E2%80%94%20porsche%20917-SPMJ5tMXanDPSpDymXQAeAK3fV3OpC.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/6.%20final1975%E2%80%94%20porsche%20911%20turbo-IBBCvTphniRTuWeBXg2VaFivHw7WZi.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/7.%20final1986%E2%80%94%20porsche%20959-1EmMt28yM9IAHjzFomAJ7iLVIW9iJM.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/8.final1996%E2%80%94%20porsche%20986%20boxster-SmGd1YZrgcOLmKKxPqo834huREnH1r.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/9.final1999%E2%80%94%20porsche%20911%20gt3-IXZfIUxINE5kJ5gSEPYAfLrour1RtU.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/10.final2003%E2%80%94%20porsche%20carrera%20gt-qE5W8XM5HXTZ4j4LUdVKBnqkdOE46y.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/11.%20final%202005%E2%80%94%20porsche%20cayman-jqMmaEmnDf27SkRgX4CT8GSHQ8P96F.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/12.%20final2009%E2%80%94%20porsche%20panamera-4L1NAlQUnFqb7VYECjFfXOt0PcNt86.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/13.%20final2013%E2%80%94%20porsche%20918%20spyder-STFSPXgWWaxGigb4r2nw3Zp4kONczk.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/14.final2019%E2%80%94%20porsche%20taycan-TGRCD8KjaEFIvE5jEUwApwoGMHmCCV.mp4",
-        "https://9wshyvzuemqs4xuk.public.blob.vercel-storage.com/15.final%20final%202022%E2%80%94%20porsche%20718%20gt4%20rs%20cayman%20-%20Made%20with%20Clipchamp-dZZh6tZdgUZW2pL0l1ZRrrC62Kfumh.mp4"];
-
+    const PorscheVideos = [];
+    for (let i = 1; i < props.allVideoUrls.length; i++) {
+        PorscheVideos.push(props.allVideoUrls[i]);
+    }
 
     const porschePowers = [
         {
@@ -130,7 +124,6 @@ function History() {
         }
     ];
 
-
     // Video source credits
     const videoCredits = [
         {
@@ -153,12 +146,16 @@ function History() {
         };
     }, []);
 
+    const porscheLength = PorscheVideos.length
+    console.log("porscheLength", porscheLength);
     const handleUpBtn = () => {
         prevIndexRef.current = index;
         setIsTransitioning(true);
         setIndex(Math.max(index - 1, 0));
         setIsPlaying(true);
     };
+
+    console.log("currentindex", index);
 
     const handleDownBtn = () => {
         prevIndexRef.current = index;
@@ -347,7 +344,8 @@ function History() {
 
                     {/* Video Acknowledgements Popup */}
                     {isHovered && (
-                        <div className="acknowledgements-popup fixed z-30 bottom-16 right-4 sm:right-6 md:right-8 bg-black/80 backdrop-blur-sm rounded-lg border border-neutral-700 shadow-xl text-white p-3 sm:p-4 max-w-xs sm:max-w-sm">
+                        <div
+                            className="acknowledgements-popup fixed z-30 bottom-16 right-4 sm:right-6 md:right-8 bg-black/80 backdrop-blur-sm rounded-lg border border-neutral-700 shadow-xl text-white p-3 sm:p-4 max-w-xs sm:max-w-sm">
                             <div className="flex justify-between items-center mb-2 sm:mb-3">
                                 <h3 className="text-sm sm:text-base font-semibold">Video Acknowledgements</h3>
                                 <button
@@ -388,7 +386,8 @@ function History() {
                             <div className={`absolute inset-0 flex items-center justify-center ${
                                 transitionDirection === 'next' ? 'animate-slide-up' : 'animate-slide-down'
                             }`}>
-                                <div className="text-4xl sm:text-6xl md:text-8xl font-bold text-white opacity-0 animate-pulse-fade">
+                                <div
+                                    className="text-4xl sm:text-6xl md:text-8xl font-bold text-white opacity-0 animate-pulse-fade">
                                     {porschePowers[index].Year}
                                 </div>
                             </div>
@@ -530,9 +529,10 @@ function History() {
                                                 </svg>
 
                                                 {/* Inner dot */}
-                                                <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                                                    i <= index ? 'bg-red-600' : 'bg-neutral-700'
-                                                } ${i === index ? 'scale-100' : 'scale-75'}`}/>
+                                                <div
+                                                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                                                        i <= index ? 'bg-red-600' : 'bg-neutral-700'
+                                                    } ${i === index ? 'scale-100' : 'scale-75'}`}/>
                                             </div>
                                         </button>
                                     );
@@ -578,7 +578,8 @@ function History() {
                             </div>
 
                             {/* Power & Speed Indicator */}
-                            <div className="mt-2 sm:mt-4 bg-neutral-900/70 rounded-lg p-2 sm:p-3 border border-neutral-800">
+                            <div
+                                className="mt-2 sm:mt-4 bg-neutral-900/70 rounded-lg p-2 sm:p-3 border border-neutral-800">
                                 <div className="flex justify-between items-center mb-1">
                                     <span className="text-xs text-neutral-400">Horsepower Evolution</span>
                                     <span
@@ -642,15 +643,17 @@ function History() {
             </div>
 
             {/* Add global styles for animations */}
-            <style jsx={"true"} global = {"true"}>{`
+            <style jsx={"true"} global={"true"}>{`
                 /* Add the missing xs breakpoint */
                 @media (min-width: 475px) {
                     .xs\\:flex {
                         display: flex;
                     }
+
                     .xs\\:hidden {
                         display: none;
                     }
+
                     .xs\\:block {
                         display: block;
                     }
