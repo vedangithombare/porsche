@@ -6,10 +6,6 @@ I participated in the Frontend UI Hackathon 2025, where the challenge was to bui
 ## Tech Stack
 - **Frontend**: React.js, Tailwind CSS
 -  **AI Assitance**: Claude AI 
-- **Deployment**: Vercel
-
-##  Live Link
-*[Click here to view](https://porsche-lilac.vercel.app/)*
   
 ## Watch it!!
 [Porsche Heritage](https://drive.google.com/file/d/10V6eaRhNwRlhJaNLpZcshy0OAznwO-bK/view?usp=sharing)
